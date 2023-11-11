@@ -36,7 +36,7 @@ const Course=mongoose.model('course',courseSchema);
   console.log(result);
 }*/
 //third approach
-async function updateCourse(id){
+/*async function updateCourse(id){
   const result=await Course.update({_id:id},{
     $set:{
       isPublished:false,
@@ -44,5 +44,12 @@ async function updateCourse(id){
     }
   });
   console.log(result);
+}*/
+//updateCourse("654699549b5fb526a0124a29");
+async function removeCourse(id){
+  //const result=await Course.deleteOne({_id:id}); //it only deletes one field
+  //const result=await Course.deleteMany({_id:id});
+  const result=await Course.findByIdAndRemove(id);
+  console.log(result);
 }
-updateCourse("654699549b5fb526a0124a29");
+removeCourse("654699549b5fb526a0124a29");
