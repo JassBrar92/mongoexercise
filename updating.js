@@ -9,7 +9,8 @@ const courseSchema=new mongoose.Schema({
  date:{type: Date,default:Date.now}
 });
 const Course=mongoose.model('course',courseSchema);
-async function updateCourse(id) {
+//first approach
+/*async function updateCourse(id) {
   const course =await Course.findById(id);
   if(!course){
     console.log('not');
@@ -23,5 +24,25 @@ async function updateCourse(id) {
  // course.author='changed name';
   const result=await course.save();
   console.log(result);
+}*/
+//second approach
+/*async function updateCourse(id){
+  const result=await Course.findByIdAndUpdate(id,{
+    $set:{
+      isPublished:true,
+      author:"Brar"
+    }
+  },{new:true});
+  console.log(result);
+}*/
+//third approach
+async function updateCourse(id){
+  const result=await Course.update({_id:id},{
+    $set:{
+      isPublished:false,
+      author:"jackson"
+    }
+  });
+  console.log(result);
 }
-updateCourse("654699e8ad45d31354fea75e");
+updateCourse("654699549b5fb526a0124a29");
